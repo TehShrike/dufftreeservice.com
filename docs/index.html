@@ -27,23 +27,13 @@
 				max-width: 700px;
 				background-color: #eeeae7;
 				min-height: 100vh;
+			}
+
+			.padded_content {
 				padding: 0 32px;
-			}
-
-			h1 {
-				color: var(--brand_orange);
-				font-family: "Arial Black";
-				font-size: 60px;
-				padding: 20px 0 0;
-				margin: 0;
-
-				text-decoration: underline;
-				text-decoration-thickness: 16px;
-				text-decoration-color: var(--brand_gray);
-			}
-
-			.orange {
-				color: var(--brand_orange);
+				display: flex;
+				gap: 32px;
+				flex-direction: column;
 			}
 
 			ul {
@@ -67,38 +57,42 @@
 			h2 {
 				margin-bottom: 8px;
 			}
+
+			.logo {
+				width: 100%;
+			}
 		</style>
 	</head>
 	<body>
 		<div class="content">
-			<h1>
-				Duff Tree Service
-			</h1>
+			<img src="./toplogo.svg" alt="Duff Tree Service" title="Duff Tree Service" class=logo>
 
-			<div>
-				<h2>Services provided</h2>
-				<ul>
-					<li>Trimming</li>
-					<li>Removal</li>
-					<li>Pest and disease prevention</li>
-					<li>Pruning</li>
-					<li>Tree planting</li>
-				</ul>
+			<div class="padded_content">
+				<div>
+					<h2>Services provided</h2>
+					<ul>
+						<li>Trimming</li>
+						<li>Removal</li>
+						<li>Pest and disease prevention</li>
+						<li>Pruning</li>
+						<li>Tree planting</li>
+					</ul>
+				</div>
+
+				<div>
+					<h2>Service area</h2>
+					<p>Omaha and surrounding area.</p>
+				</div>
+
+				<div>
+					<h2>Contact</h2>
+					<p>Contact Andrew today for a quote – email: <a href="mailto:andrew@dufftreeservice.com">andrew@dufftreeservice.com</a>, phone: <a href="tel:402-936-8050">402-936-8050</a></p>
+
+					<p>
+						Andrew Duff: Nebraska Certified Arborist, Licensed Omaha Arborist.
+					</p>
+				</div>
 			</div>
-
-			<div>
-				<h2>Service area</h2>
-				<p>Omaha and surrounding area.</p>
-			</div>
-
-			<div>
-				<h2>Contact</h2>
-				<p>Contact Andrew today for a quote – email: <a href="mailto:andrew@dufftreeservice.com">andrew@dufftreeservice.com</a>, phone: <a href="tel:402-936-8050">402-936-8050</a></p>
-			</div>
-
-			<p>
-				Andrew Duff: Nebraska Certified Arborist, Licensed Omaha Arborist.
-			</p>
 		</div>
 	</body>
 </html>
