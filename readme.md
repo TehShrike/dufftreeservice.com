@@ -5,6 +5,3 @@ If you want to test locally pretty easily:
 3. open the directory for this project locally with your command-line
 4. run `npm i`
 5. run `npm start`
-
-After doing that setup, all you'll need to do is navigate to the directory with your command-line and run `npm start`
-
