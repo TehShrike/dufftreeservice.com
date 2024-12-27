@@ -105,7 +105,8 @@
 			}
 
 			.logo {
-				width: 100%;
+				max-height: 20vh;
+				max-width: 100%;
 			}
 
 			a {
@@ -124,11 +125,32 @@
 			.icon path {
 				fill: var(--brand_dark_green);
 			}
+
+			iframe {
+				height: 700px;
+				width: 100%;
+				border: none
+			}
+
+			@media (max-width: 680px) {
+				iframe {
+					height: 900px;
+				}
+			}
+
+
 		</style>
 	</head>
 	<body>
 		<div class="content column-gap-32">
-			<img src="./toplogo.svg" alt="Duff Tree Service" title="Duff Tree Service" class=logo>
+			<div style="padding: 16px 32px;">
+				<img
+					src="./duff-logo-green.svg"
+					alt="Duff Tree Service"
+					title="Duff Tree Service"
+					class=logo
+				>
+			</div>
 
 			<div class="padded_content column-gap-32">
 				<div class=column-gap-16>
@@ -158,7 +180,7 @@
 				</div>
 
 				<div>
-					<iframe src="https://dufftreeservice.arbostar.com/requests/lead-form/iframe" style="width: 100%; height: 700px; border: none;"></iframe>
+					<iframe src="https://dufftreeservice.arbostar.com/requests/lead-form/iframe"></iframe>
 				</div>
 
 				<div class=column-gap-16>
