@@ -37,6 +37,10 @@ body {
 	font-size: 18px;
 }
 
+.sans-serif {
+	font-family: "Tahoma", "Verdana", sans-serif;
+}
+
 h1, h2, h3 {
 	font-family: "Tahoma", "Verdana", sans-serif;
 	color: var(--brand_dark_green);
