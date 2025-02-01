@@ -169,3 +169,12 @@ iframe {
 	}
 }
 
+.image_container {
+	width: 100%;
+	text-align: center
+}
+
+.wide_picture {
+	width: 75%;
+	min-width: 300px;
+}
