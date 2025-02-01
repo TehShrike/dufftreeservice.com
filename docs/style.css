@@ -22,11 +22,21 @@ h1, h2, h3, p, li, body {
 }
 
 nav {
+	font-size: 20px;
+	display: flex;
+	justify-content: space-between;
+
 	ul, ol {
 		display: flex;
 		flex-direction: row;
 		gap: 8px;
 		padding: 0;
+	}
+
+	@media (max-width: 500px) {
+		flex-direction: column;
+		gap: 8px;
+		align-items: center;
 	}
 }
 
