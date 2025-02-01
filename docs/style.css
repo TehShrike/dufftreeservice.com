@@ -21,6 +21,15 @@ h1, h2, h3, p, li, body {
 	gap: 32px;
 }
 
+nav {
+	ul, ol {
+		display: flex;
+		flex-direction: row;
+		gap: 8px;
+		padding: 0;
+	}
+}
+
 body {
 	display: flex;
 	flex-direction: column;
@@ -63,7 +72,7 @@ h3 {
 }
 
 .padded_content {
-	padding: 0 32px 32px;
+	padding: 0 32px;
 }
 
 ul {
