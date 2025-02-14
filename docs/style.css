@@ -171,10 +171,22 @@ iframe {
 
 .image_container {
 	width: 100%;
-	text-align: center
-}
+	text-align: center;
 
-.wide_picture {
-	width: 75%;
-	min-width: 300px;
+	img {
+		width: 300px;
+		max-width: 100%;
+	}
+
+	img.wide {
+		width: 75%;
+		min-width: 300px;
+	}
+
+	@media (max-width: 400px) {
+		img.wide {
+			width: 100%;
+			min-width: unset;
+		}
+	}
 }
