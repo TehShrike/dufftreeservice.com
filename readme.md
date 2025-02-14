@@ -5,3 +5,9 @@ If you want to test locally pretty easily:
 3. open the directory for this project locally with your command-line
 4. run `npm i`
 5. run `npm start`
+
+## To generate webp versions of all jpg images in docs/pictures
+
+```sh
+npm run jpg_to_webp
+```

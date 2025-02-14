@@ -1,16 +1,20 @@
 {
-  "name": "dufftreeservice.com",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "live-server docs"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "live-server": "^1.2.2"
-  }
+	"name": "dufftreeservice.com",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "live-server docs",
+		"jpg_to_webp": "sharp --compression webp --format webp --input ./docs/pictures/*.jpg --output ./docs/pictures/"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"live-server": "^1.2.2"
+	},
+	"dependencies": {
+		"sharp-cli": "^5.1.0"
+	}
 }
