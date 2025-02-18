@@ -17,3 +17,6 @@ To make changes to the html, edit the files in the `content` directory (not the 
 ```sh
 npm run jpg_to_webp
 ```
+## To change the titles of a particular page
+
+Edit the `content/title.js` file.
