@@ -25,12 +25,27 @@ nav {
 	font-size: 20px;
 	display: flex;
 	justify-content: space-between;
+	gap: 8px;
 
-	ul, ol {
+	ul {
 		display: flex;
 		flex-direction: row;
+		align-items: flex-start;
+		flex-wrap: wrap;
 		gap: 8px;
+		margin: 0;
 		padding: 0;
+	}
+
+	li {
+		font-size: 20px;
+		list-style-type: none;
+		padding-bottom: 2px;
+		text-decoration: none;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		white-space: nowrap;
 	}
 
 	@media (max-width: 500px) {
@@ -108,31 +123,6 @@ h3 {
 
 .padded_content {
 	padding: 0 32px;
-}
-
-ul {
-	padding: 0;
-	margin: 0;
-	align-items: flex-start;
-}
-
-li {
-	font-size: 20px;
-	list-style-type: none;
-	padding-bottom: 2px;
-	text-decoration: none;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-}
-
-ul.icon-start {
-	position: relative;
-	padding-left: 24px;
-}
-ul.icon-start svg {
-	position: absolute;
-	left: 0;
 }
 
 .logo {
