@@ -36,7 +36,7 @@ nav {
 		flex-direction: row;
 		align-items: flex-start;
 		flex-wrap: wrap;
-		gap: 8px;
+		gap: 12px;
 	}
 
 	li {
@@ -48,6 +48,18 @@ nav {
 		flex-direction: row;
 		align-items: center;
 		white-space: nowrap;
+
+		a {
+			border: 1px solid var(--brand_gray);
+			border-radius: 4px;
+			background-color: var(--brand_gray);
+			color: var(--brand_light);
+			padding: 8px;
+			text-decoration: none;
+		}
+		a:visited {
+			color: var(--brand_light);
+		}
 	}
 
 	@media (max-width: 600px) {
