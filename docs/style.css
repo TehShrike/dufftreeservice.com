@@ -12,12 +12,14 @@ ul, ol {
 :root {
 	--large-font-size: 32px;
 	--medium-header-font-size: 28px;
+	--large-gap: 32px;
 }
 
 @media (max-width: 750px) {
 	:root {
 		--large-font-size: 24px;
 		--medium-header-font-size: 20px;
+		--large-gap: 16px;
 	}
 }
 
@@ -35,14 +37,10 @@ ul, ol {
 .main-content-column {
 	display: flex;
 	flex-direction: column;
-	gap: 32px;
-
-	@media (max-width: 750px) {
-		gap: 16px;
-	}
+	gap: var(--large-gap);
 }
 
-nav {
+.nav-main {
 	font-size: 20px;
 	display: flex;
 	justify-content: space-between;
@@ -92,6 +90,52 @@ nav {
 	}
 }
 
+.nav-services {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+
+
+	ul {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 8px;
+
+		@media (max-width: 750px) {
+			justify-content: center;
+		}
+	}
+
+	li {
+		list-style-type: none;
+		display: flex;
+		align-items: center;
+
+		font-size: 17px;
+	}
+
+	li:not(:first-child):not(:nth-child(1)):not(:last-child)::after {
+		content: "|";
+		margin-left: 8px;
+		color: var(--brand_light);
+	}
+}
+
+.nav-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 16px;
+
+	@media (max-width: 750px) {
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
 /*.small_big_columns {
 	display: flex;
 	flex-direction: row;
@@ -135,13 +179,12 @@ body {
 .header {
 	display: flex;
 	justify-content: start;
-	gap: 32px;
+	gap: var(--large-gap);
 	padding: 32px;
 	padding-bottom: 0;
 
 	@media (max-width: 750px) {
 		flex-direction: column;
-		gap: 16px;
 		align-items: center;
 		padding: 16px;
 		padding-bottom: 0;
