@@ -13,6 +13,7 @@ ul, ol {
 	--large-font-size: 32px;
 	--medium-header-font-size: 28px;
 	--large-gap: 32px;
+	--medium-gap: 16px;
 }
 
 @media (max-width: 750px) {
@@ -20,6 +21,7 @@ ul, ol {
 		--large-font-size: 24px;
 		--medium-header-font-size: 20px;
 		--large-gap: 16px;
+		--medium-gap: 8px;
 	}
 }
 
@@ -198,6 +200,7 @@ body {
 h1, h2, h3 {
 	font-family: "Tahoma", "Verdana", sans-serif;
 	color: var(--brand_dark_green);
+	text-align: center;
 }
 h1 {
 	font-size: var(--large-font-size);
@@ -278,4 +281,11 @@ iframe {
 		max-width: 100%;
 		text-align: center;
 	}
+}
+
+.centered-column {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: var(--medium-gap);
 }
