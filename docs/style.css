@@ -74,7 +74,7 @@ ul, ol {
 		}
 	}
 
-	@media (max-width: 600px) {
+	@media (max-width: 750px) {
 		flex-direction: column;
 		gap: 8px;
 		align-items: center;
@@ -91,7 +91,9 @@ ul, ol {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	gap: 4px;
+	justify-content: center;
+	gap: 8px;
+	padding: 0 var(--large-gap);
 
 
 	ul {
@@ -100,10 +102,6 @@ ul, ol {
 		align-items: center;
 		flex-wrap: wrap;
 		gap: 8px;
-
-		@media (max-width: 750px) {
-			justify-content: center;
-		}
 	}
 
 	li {
@@ -122,7 +120,7 @@ ul, ol {
 	}
 }
 
-.nav-container {
+/* .nav-container {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -132,7 +130,7 @@ ul, ol {
 		flex-direction: column;
 		align-items: center;
 	}
-}
+} */
 
 body {
 	display: flex;
@@ -154,16 +152,28 @@ body {
 	display: flex;
 	justify-content: start;
 	gap: var(--large-gap);
-	padding: 32px;
+	padding: var(--large-gap);
 	padding-bottom: 0;
 
-	@media (max-width: 750px) {
-		flex-direction: column;
+	> * {
+		display: flex;
 		align-items: center;
-		padding: 16px;
-		padding-bottom: 0;
+	}
+
+	@media (max-width: 750px) {
+		> * {
+			align-items: start;
+		}
 	}
 }
+
+.logo {
+	min-width: 100px;
+	max-height: 20vh;
+	max-width: 100%;
+}
+
+
 
 .sans-serif {
 	font-family: "Tahoma", "Verdana", sans-serif;
@@ -195,12 +205,6 @@ h2 {
 
 .padded_content {
 	padding: 0 32px;
-}
-
-.logo {
-	min-width: 100px;
-	max-height: 20vh;
-	max-width: 100%;
 }
 
 a {
