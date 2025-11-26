@@ -93,11 +93,11 @@ export default {
 - Uses CSS custom properties (variables) for theming
 - Responsive breakpoint at 750px
 - Brand colors defined in `:root` on `body`:
-  - `--brand_orange: #f56800`
   - `--brand_gray: #626262`
   - `--brand_light: #eeeae7`
   - `--brand_white: #f9f9f9`
   - `--brand_dark_green: #2E7D32`
+- Prefer inlining single-use CSS classes directly in the HTML using multi-line style attributes (see the telephone link and logo img in `template.html` for the formatting style)
 
 ## Key Conventions
 
@@ -131,3 +131,8 @@ Dev dependencies only (no runtime dependencies):
 - `npm-run-all` - Run multiple npm scripts in parallel
 - `sharp-cli` - Image conversion (JPG to WebP)
 - `watchlist` - File watcher for auto-rebuild
+
+### Other
+
+Whenever the style.css changes, the version in `style.css?version=` needs to be incremented for cachebusting purposes.
+
