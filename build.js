@@ -1,5 +1,6 @@
 import { readdir, readFile as read_file, writeFile as write_file } from 'node:fs/promises'
 import { join as join_path } from 'node:path'
+import sh from 'shell-tag'
 
 const input_directory = './content'
 const output_directory = './docs'
@@ -43,6 +44,9 @@ const main = async () => {
 
 		await write_file(join_path(output_directory, file), output_html)
 	}))
+
+	const output_files = content_html_files.map(file => join_path(output_directory, file))
+	await sh`git add ${output_files}`
 }
 
 main()
