@@ -37,6 +37,19 @@ ul, ol {
 	gap: var(--large-gap);
 }
 
+.gray_buttony_thing {
+	border: 1px solid var(--brand_gray);
+	border-radius: 4px;
+	background-color: var(--brand_gray);
+	color: var(--brand_light);
+	padding: 8px;
+	text-decoration: none;
+
+	&:visited {
+		color: var(--brand_light);
+	}
+}
+
 .nav-main {
 	font-size: 20px;
 	display: flex;
@@ -59,18 +72,6 @@ ul, ol {
 		flex-direction: row;
 		align-items: center;
 		white-space: nowrap;
-
-		a {
-			border: 1px solid var(--brand_gray);
-			border-radius: 4px;
-			background-color: var(--brand_gray);
-			color: var(--brand_light);
-			padding: 8px;
-			text-decoration: none;
-		}
-		a:visited {
-			color: var(--brand_light);
-		}
 	}
 
 	@media (max-width: 750px) {
@@ -93,6 +94,7 @@ ul, ol {
 	justify-content: center;
 	gap: 8px;
 	padding: 0 var(--large-gap);
+	--menu_gap: 8px;
 
 
 	ul {
@@ -100,7 +102,7 @@ ul, ol {
 		flex-direction: row;
 		align-items: center;
 		flex-wrap: wrap;
-		gap: 8px;
+		gap: var(--menu_gap);
 	}
 
 	li {
@@ -112,10 +114,8 @@ ul, ol {
 		letter-spacing: .05em;
 	}
 
-	li:not(:last-child)::after {
-		content: "|";
-		margin-left: 8px;
-		color: var(--brand_light);
+	.gray_buttony_thing {
+		padding: 4px 8px;
 	}
 }
 
@@ -125,7 +125,6 @@ body {
 	flex-direction: column;
 	align-items: center;
 
-	--brand_orange: #f56800;
 	--brand_gray: #626262;
 	--brand_light: #eeeae7;
 	--brand_white: #f9f9f9;
@@ -196,10 +195,10 @@ h2 {
 }
 
 a {
-	color: var(--brand_orange);
+	color: var(--brand_gray);
 }
 a:visited {
-	color: #b34c00;
+	color: color-mix(in srgb, var(--brand_gray) 85%, white);
 }
 
 
