@@ -1,5 +1,41 @@
-<div class="sans-serif" style="display: flex; flex-direction: column; align-items: center; font-size: var(--large-font-size); background-color: var(--brand_dark_green); color: white; padding: 8px;">
-	<p style="text-align: center; margin: 0 8px;">Nebraska Certified Arborist</p>
+<style>
+	.hero-banner {
+		position: absolute;
+		left: 0;
+		right: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		font-size: var(--large-font-size);
+		color: white;
+		padding: 8px;
+	}
+
+	.hero-banner p {
+		text-align: center;
+		margin: 0 8px;
+	}
+</style>
+
+<div style="position: relative; margin-top: calc(-1 * var(--large-gap));">
+	<img src="pictures/index_crew.webp" alt="Duff Tree Service crew" style="
+		width: 100%;
+		display: block;
+		mask-image: linear-gradient(to bottom, transparent 0%, black 20%);
+		object-position: top;
+	">
+	<div class="sans-serif hero-banner" style="
+		top: 10%;
+		background-color: rgba(46, 125, 50, 0.9);
+	">
+		<p>Nebraska Certified Arborist</p>
+	</div>
+	<div class="sans-serif hero-banner" style="
+		bottom: 0;
+		background-color: rgba(0, 0, 0, 0.7);
+	">
+		<p>Omaha Tree Experts</p>
+	</div>
 </div>
 
 <div class="padded_content main-content-column">
