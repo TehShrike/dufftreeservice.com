@@ -87,39 +87,6 @@ ul, ol {
 	}
 }
 
-.nav-services {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: center;
-	gap: 8px;
-	padding: 0 var(--large-gap);
-	--menu_gap: 8px;
-
-
-	ul {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		flex-wrap: wrap;
-		gap: var(--menu_gap);
-	}
-
-	li {
-		list-style-type: none;
-		display: flex;
-		align-items: center;
-
-		font-size: 17px;
-		letter-spacing: .05em;
-	}
-
-	.gray_buttony_thing {
-		padding: 4px 8px;
-	}
-}
-
-
 body {
 	display: flex;
 	flex-direction: column;
