@@ -11,23 +11,13 @@ This is the website for **Duff Tree Service**, a tree service business based in 
 ├── content/              # Source HTML content files (edit these)
 │   ├── template.html     # Main page template with placeholders
 │   ├── titles.js         # Page title definitions
-│   ├── index.html        # Homepage content
-│   ├── about.html        # About page content
-│   ├── why_us.html       # Why Us page content
-│   ├── service_area.html # Service area page content
-│   ├── tree_removal.html # Tree removal service page
-│   ├── tree_trimming.html# Tree trimming service page
-│   ├── tree_planting.html# Tree planting service page
-│   └── more_services.html# Additional services page
-├── docs/                 # Built output files (DO NOT edit directly)
+│   └── *.html            # Individual page content files
+├── docs/                 # Built output files (DO NOT edit directly, except style.css)
 │   ├── *.html            # Generated HTML pages
-│   ├── style.css         # CSS styles (edit this directly)
-│   ├── pictures/         # Images (.jpg and .webp versions)
-│   ├── CNAME             # GitHub Pages custom domain config
-│   └── (favicon files)   # Various favicon formats
+│   ├── style.css         # Global CSS styles (edit this directly)
+│   └── pictures/         # Images (.jpg and .webp versions)
 ├── build.js              # Build script
-├── package.json          # NPM configuration
-└── readme.md             # User-facing documentation
+└── package.json          # NPM configuration
 ```
 
 ## Build System
@@ -89,15 +79,17 @@ export default {
 
 ### CSS
 
-- Edit `docs/style.css` directly
+- Edit `docs/style.css` directly for global styles
+- **Page-specific CSS**: Put styles only used on one page in a `<style>` tag within that page's content file, not in style.css. Only add to style.css if used in the template or across multiple pages.
 - Uses CSS custom properties (variables) for theming
 - Responsive breakpoint at 750px
 - Brand colors defined in `:root` on `body`:
   - `--brand_gray: #626262`
+  - `--brand_mild_gray: #888`
   - `--brand_light: #eeeae7`
   - `--brand_white: #f9f9f9`
   - `--brand_dark_green: #2E7D32`
-- Prefer inlining single-use CSS classes directly in the HTML using multi-line style attributes (see the telephone link and logo img in `template.html` for the formatting style)
+- Prefer inlining single-use styles directly in the HTML using multi-line style attributes (see the telephone link and logo img in `template.html` for the formatting style)
 
 ## Key Conventions
 
