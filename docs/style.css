@@ -191,3 +191,14 @@ a:visited {
 	justify-content: center;
 	gap: var(--medium-gap);
 }
+
+.google_review_star {
+	width: 18px;
+	height: 18px;
+	fill: #FBBC04;
+}
+
+.google_logo {
+	width: 24px;
+	height: 24px;
+}

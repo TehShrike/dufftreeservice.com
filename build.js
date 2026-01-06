@@ -24,10 +24,19 @@ const main = async () => {
 
 	let component_files = await readdir(components_directory)
 
-	const components = Object.fromEntries(await Promise.all(component_files.filter(f => f.endsWith('.html')).map(async file => {
+	let components = Object.fromEntries(await Promise.all(component_files.filter(f => f.endsWith('.html')).map(async file => {
 		const name = file.slice(0, -5)
 		return [name, await read_file(join_path(components_directory, file), { encoding: 'utf8' })]
 	})))
+
+	Object.keys(components).forEach(name => {
+		Object.entries(components).forEach(([component_name, component_html]) => {
+			components[name] = components[name].replace(
+				new RegExp(`<!-- ${component_name} -->`, 'g'),
+				component_html.trim()
+			)
+		})
+	})
 
 	const content_html_files = content_directory_files.filter(
 		file => file.endsWith('.html') && file !== 'template.html'
@@ -39,16 +48,6 @@ const main = async () => {
 		file,
 		content: await read_file(join_path(input_directory, file), { encoding: 'utf8' })
 	})))
-
-	Object.entries(contents).forEach(([file, content]) => {
-		Object.entries(components).forEach(([component_name, component_html]) => {
-			content = content.replace(
-				new RegExp(`<!-- ${component_name} -->`),
-				component_html.trim()
-			)
-		})
-		contents[file] = content
-	})
 
 	await Promise.all(contents.map(async ({file, content}) => {
 		const name = file.slice(0, -5)
