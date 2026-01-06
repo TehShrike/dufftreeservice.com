@@ -15,12 +15,16 @@
 		"image_processing:index_thumbs": "sharp -i ./docs/pictures/index_careful_cuts.jpg -o ./docs/pictures/ -f webp resize 600 && sharp -i ./docs/pictures/index_safe_services.jpg -o ./docs/pictures/ -f webp resize 600 && sharp -i ./docs/pictures/index_informed_individuals.jpg -o ./docs/pictures/ -f webp resize 600",
 		"image_processing:index_hero": "sharp -i ./docs/pictures/index_crew.jpg -o ./docs/pictures/ -f webp resize 1600",
 		"jpg_to_webp": "run-p image_processing:*",
-		"build": "node build.js"
+		"build": "node build.js",
+		"update_google_reviews": "node scripts/fetch-google-reviews.js && node scripts/parse-google-reviews.js"
 	},
 	"keywords": [],
 	"devDependencies": {
 		"live-server": "^1.2.2",
 		"npm-run-all": "^4.1.5",
+		"puppeteer": "^24.34.0",
+		"puppeteer-extra": "^3.3.6",
+		"puppeteer-extra-plugin-stealth": "^2.11.2",
 		"sharp-cli": "^5.1.0",
 		"watchlist": "^0.3.1"
 	},

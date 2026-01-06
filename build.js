@@ -40,6 +40,16 @@ const main = async () => {
 		content: await read_file(join_path(input_directory, file), { encoding: 'utf8' })
 	})))
 
+	Object.entries(contents).forEach(([file, content]) => {
+		Object.entries(components).forEach(([component_name, component_html]) => {
+			content = content.replace(
+				new RegExp(`<!-- ${component_name} -->`),
+				component_html.trim()
+			)
+		})
+		contents[file] = content
+	})
+
 	await Promise.all(contents.map(async ({file, content}) => {
 		const name = file.slice(0, -5)
 		const title = name in titles
