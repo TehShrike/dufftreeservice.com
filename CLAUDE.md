@@ -1,5 +1,16 @@
 # CLAUDE.md - Duff Tree Service Website
 
+Use pnpm instead of npm.
+
+Do not write comments explaining what the code is going to do.
+
+Use snake_case for function and variable names, PascalCase for type names.
+
+I prefer arrow function syntax rather than function declarations or function expressions.
+
+Don't define a variable right before using it only once – inline the value instead.
+
+
 ## Project Overview
 
 This is the website for **Duff Tree Service**, a tree service business based in Nebraska. It's a static site built with vanilla HTML/CSS and a custom Node.js build system, hosted on GitHub Pages at www.dufftreeservice.com.
