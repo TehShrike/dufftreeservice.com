@@ -3,6 +3,7 @@ import { join as join_path } from 'node:path'
 import sh from 'shell-tag'
 
 const input_directory = './content'
+const components_directory = './content/components'
 const output_directory = './docs'
 const site_title = 'Duff Tree Service'
 
@@ -21,6 +22,13 @@ const main = async () => {
 
 	const { default: titles } = await import('./' + join_path(input_directory, 'titles.js'))
 
+	let component_files = await readdir(components_directory)
+
+	const components = Object.fromEntries(await Promise.all(component_files.filter(f => f.endsWith('.html')).map(async file => {
+		const name = file.slice(0, -5)
+		return [name, await read_file(join_path(components_directory, file), { encoding: 'utf8' })]
+	})))
+
 	const content_html_files = content_directory_files.filter(
 		file => file.endsWith('.html') && file !== 'template.html'
 	)
@@ -38,8 +46,17 @@ const main = async () => {
 			? `${site_title} | ${titles[name]}`
 			: site_title
 
+		// Replace component placeholders
+		let processed_content = content
+		for (const [component_name, component_html] of Object.entries(components)) {
+			processed_content = processed_content.replace(
+				new RegExp(`<!-- ${component_name} -->`),
+				component_html.trim()
+			)
+		}
+
 		const output_html = template
-			.replace(/\t{3}<!-- content -->/, indent(content, 3))
+			.replace(/\t{3}<!-- content -->/, indent(processed_content, 3))
 			.replace('<!-- title -->', title)
 
 		await write_file(join_path(output_directory, file), output_html)
