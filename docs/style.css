@@ -14,6 +14,14 @@ ul, ol {
 	--medium-header-font-size: 28px;
 	--large-gap: 32px;
 	--medium-gap: 16px;
+
+	--brand_gray: #626262;
+	--brand_mild_gray: #888;
+	--brand_light: #eeeae7;
+	--brand_white: #f9f9f9;
+	--brand_dark_green: #2E7D32;
+
+	--iec_brand_color: var(--brand_dark_green);
 }
 
 @media (max-width: 750px) {
@@ -91,12 +99,6 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-
-	--brand_gray: #626262;
-	--brand_mild_gray: #888;
-	--brand_light: #eeeae7;
-	--brand_white: #f9f9f9;
-	--brand_dark_green: #2E7D32;
 
 	background-color: var(--brand_light);
 	font-family: "Georgia";
