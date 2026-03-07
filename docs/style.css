@@ -15,11 +15,13 @@ ul, ol {
 	--large-gap: 32px;
 	--medium-gap: 16px;
 
+	--brand_black: #161616;
 	--brand_gray: #626262;
 	--brand_mild_gray: #888;
 	--brand_light: #eeeae7;
 	--brand_white: #f9f9f9;
-	--brand_dark_green: #2E7D32;
+	--brand_dark_green: #2A7221;
+	--brand_orange: #F4992C;
 
 	--iec_brand_color: var(--brand_dark_green);
 }
@@ -137,7 +139,7 @@ body {
 }
 
 .sans-serif {
-	font-family: BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+	font-family: "Tahoma", "Verdana", BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 h1, h2, h3 {
