@@ -1,0 +1,74 @@
+<style>
+	.spring-bundle-highlight {
+		background-color: var(--brand_dark_green);
+		color: white;
+		padding: 24px 32px;
+		text-align: center;
+		font-size: var(--large-font-size);
+		font-family: "Tahoma", "Verdana", sans-serif;
+	}
+
+	.spring-bundle-highlight .price {
+		font-size: 48px;
+		font-weight: bold;
+		margin: 8px 0;
+	}
+
+	.spring-bundle-details {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	.spring-bundle-details li {
+		list-style-type: none;
+		padding-left: 24px;
+		position: relative;
+	}
+
+	.spring-bundle-details li::before {
+		content: "\2713";
+		color: var(--brand_dark_green);
+		font-weight: bold;
+		position: absolute;
+		left: 0;
+	}
+</style>
+
+<div class="spring-bundle-highlight">
+	<div>Spring Bundle</div>
+	<div class="price">$99</div>
+	<div>Arborist Consultation + Soil Testing</div>
+</div>
+
+<div class="padded_content main-content-column">
+	<h1>Spring Bundle Deal</h1>
+
+	<p>
+		Get your trees ready for the growing season. For a limited time, we're offering a certified arborist consultation paired with professional soil testing for just $99.
+	</p>
+
+	<h2>What's Included</h2>
+
+	<ul class="spring-bundle-details">
+		<li>On-site visit from a Nebraska Certified Arborist</li>
+		<li>Full tree inventory and health assessment</li>
+		<li>Risk analysis and safety evaluation</li>
+		<li>Disease and insect inspection</li>
+		<li>Professional soil testing and analysis</li>
+		<li>Personalized care recommendations for your trees</li>
+	</ul>
+
+	<p>
+		Healthy trees start with healthy soil. Our soil testing identifies nutrient deficiencies and pH imbalances so we can recommend the right treatment before problems develop.
+	</p>
+
+	<p>
+		Email us at <a href="mailto:andrew@dufftreeservice.com">andrew@dufftreeservice.com</a> or call <a href="tel:402-936-8050">402-936-8050</a> to book your spring bundle.
+	</p>
+
+	<p style="display: flex; align-items: center; justify-content: center;">
+		<script type="module" src="https://embed.instantestimatecentral.com/dufftreeservice/contact_button.js"></script>
+		<contact-button call_to_action="Book your spring bundle"></contact-button>
+	</p>
+</div>

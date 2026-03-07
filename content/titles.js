@@ -10,4 +10,5 @@ export default {
 	injection: 'Injection',
 	cabling: 'Tree Cabling',
 	more_services: 'Other Services',
+	spring_bundle: 'Spring Bundle',
 }
