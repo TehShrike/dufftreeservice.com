@@ -9,9 +9,7 @@ const componentsDir = join(__dirname, '..', 'content', 'components')
 const main = async () => {
 	const html = await readFile(inputPath, 'utf8')
 
-	// Look for rating in aria-label like: aria-label="Rated 4.9 out of 5"
-	const ratingMatch = html.match(/aria-label="Rated (\d\.\d) out of 5/)
-		|| html.match(/>(\d\.\d)<\/span>/)
+	const ratingMatch = html.match(/data-attrid="subtitle"[^>]*>.*?(\d\.\d)<\/span>/)
 
 	// Look for review count like: >73 Google reviews</span>
 	const reviewMatch = html.match(/>(\d+) Google reviews</)
