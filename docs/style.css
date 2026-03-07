@@ -61,7 +61,7 @@ ul, ol {
 .nav-main {
 	font-size: 20px;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	gap: 8px;
 
 	ul {
@@ -105,27 +105,39 @@ body {
 	font-size: 18px;
 }
 
-.header {
-	display: flex;
-	justify-content: start;
-	gap: var(--large-gap);
-	padding: var(--large-gap);
-	padding-bottom: 0;
+.top-bar {
+	position: sticky;
+	top: 0;
+	z-index: 1;
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	align-items: center;
+	padding: 4px 16px;
+	background-color: var(--brand_white);
+	width: 100%;
+	max-width: 800px;
+	box-sizing: border-box;
 
-	> * {
-		display: flex;
-		align-items: center;
+	> :last-child {
+		justify-self: end;
 	}
+}
 
-	@media (max-width: 750px) {
-		> * {
-			align-items: start;
-		}
+.top-bar-phone {
+	color: var(--brand_dark_green);
+	text-decoration: none;
+	font-variant-numeric: tabular-nums;
+	letter-spacing: 0.01em;
+	white-space: nowrap;
+	font-size: 20px;
+
+	@media (max-width: 500px) {
+		font-size: 14px;
 	}
 }
 
 .sans-serif {
-	font-family: "Tahoma", "Verdana", sans-serif;
+	font-family: BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 h1, h2, h3 {
