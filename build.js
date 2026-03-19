@@ -82,6 +82,8 @@ const generate_sitemap = async (output_files) => {
 	const base_url = 'https://www.dufftreeservice.com'
 	const today = new Date().toISOString().slice(0, 10)
 
+	sh`git checkout -- ${sitemap_path} 2>/dev/null`
+
 	const previous_lastmods = await read_file(sitemap_path, { encoding: 'utf8' })
 		.then(xml => Object.fromEntries(
 			[...xml.matchAll(/<loc>([^<]+)<\/loc>(?:\s*<lastmod>([^<]+)<\/lastmod>)?/g)]
