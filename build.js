@@ -73,6 +73,49 @@ const main = async () => {
 
 	const output_files = content_html_files.map(file => join_path(output_directory, file))
 	await sh`git add ${output_files}`
+
+	await generate_sitemap(output_files)
+}
+
+const generate_sitemap = async (output_files) => {
+	const sitemap_path = join_path(output_directory, 'sitemap.xml')
+	const base_url = 'https://www.dufftreeservice.com'
+	const today = new Date().toISOString().slice(0, 10)
+
+	const previous_lastmods = await read_file(sitemap_path, { encoding: 'utf8' })
+		.then(xml => Object.fromEntries(
+			[...xml.matchAll(/<loc>([^<]+)<\/loc>(?:\s*<lastmod>([^<]+)<\/lastmod>)?/g)]
+				.filter(m => m[2])
+				.map(m => [m[1], m[2]])
+		))
+		.catch(() => ({}))
+
+	const staged_files = new Set(
+		sh`git diff --cached --name-only`.trim().split('\n').filter(Boolean)
+	)
+
+	const urls = output_files.map(file => {
+		const name = file.replace(/^\.\//, '').replace(/^docs\//, '')
+		const loc = name === 'index.html'
+			? `${base_url}/`
+			: `${base_url}/${name}`
+
+		const lastmod = staged_files.has(file.replace(/^\.\//, ''))
+			? today
+			: previous_lastmods[loc] || null
+
+		return lastmod
+			? `\t<url>\n\t\t<loc>${loc}</loc>\n\t\t<lastmod>${lastmod}</lastmod>\n\t</url>`
+			: `\t<url>\n\t\t<loc>${loc}</loc>\n\t</url>`
+	})
+
+	const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.join('\n')}
+</urlset>
+`
+
+	await write_file(sitemap_path, sitemap)
 }
 
 main()
