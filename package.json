@@ -15,6 +15,7 @@
 		"image_processing:service_hero": "node scripts/generate-service-heroes.js",
 		"image_processing:index_thumbs": "sharp -i ./docs/pictures/index_careful_cuts.jpg -o ./docs/pictures/ -f webp resize 600 && sharp -i ./docs/pictures/index_safe_services.jpg -o ./docs/pictures/ -f webp resize 600 && sharp -i ./docs/pictures/index_informed_individuals.jpg -o ./docs/pictures/ -f webp resize 600",
 		"image_processing:index_hero": "sharp -i ./docs/pictures/index_crew.jpg -o ./docs/pictures/ -f webp resize 1600",
+		"image_processing:soil_conditioning": "sharp -i ./docs/pictures/soil_conditioning_1.png -o ./docs/pictures/ -f webp resize 600",
 		"jpg_to_webp": "run-p image_processing:*",
 		"build": "node build.js",
 		"update_google_reviews": "node scripts/fetch-google-reviews.js && node scripts/parse-google-reviews.js"

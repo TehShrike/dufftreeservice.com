@@ -11,4 +11,5 @@ export default {
 	cabling: 'Tree Cabling',
 	more_services: 'Other Services',
 	contact: 'Contact',
+	soil_conditioning: 'Soil Conditioning',
 }
