@@ -24,6 +24,7 @@ ul, ol {
 	--brand_orange: #F4992C;
 
 	--iec_brand_color: var(--brand_dark_green);
+	--iec_secondary_color: var(--brand_orange);
 }
 
 @media (max-width: 750px) {
