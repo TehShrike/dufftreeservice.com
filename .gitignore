@@ -1,3 +1,4 @@
 node_modules
 .DS_Store
 scripts/google-reviews-page.html
+/public

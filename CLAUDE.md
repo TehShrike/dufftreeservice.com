@@ -13,100 +13,105 @@ Don't define a variable right before using it only once – inline the value ins
 
 ## Project Overview
 
-This is the website for **Duff Tree Service**, a tree service business based in Nebraska. It's a static site built with vanilla HTML/CSS and a custom Node.js build system, hosted on GitHub Pages at www.dufftreeservice.com.
+This is the website for **Duff Tree Service**, a tree service business based in Nebraska. It's a static site built with [bongo](https://bongo.build) (tempura templates, LightningCSS, Bun.Image), deployed to GitHub Pages at www.dufftreeservice.com by a GitHub Actions workflow.
 
 ## Directory Structure
 
 ```
 .
-├── content/              # Source HTML content files (edit these)
-│   ├── template.html     # Main page template with placeholders
-│   ├── titles.js         # Page title definitions
-│   └── *.html            # Individual page content files
-├── docs/                 # Built output files (DO NOT edit directly, except style.css)
-│   ├── *.html            # Generated HTML pages
-│   ├── style.css         # Global CSS styles (edit this directly)
-│   └── pictures/         # Images (.jpg and .webp versions)
-├── build.js              # Build script
-└── package.json          # NPM configuration
+├── assets/               # Files that templates reference; only referenced files are published
+│   ├── style.css         # Global CSS (built with LightningCSS, content-hashed)
+│   ├── pictures/         # Full-size source images (jpg/png); bongo resizes them
+│   └── *.svg             # Logos used by the layout
+├── content/              # One .hbs file per page, plus static files copied as-is
+│   ├── *.hbs             # Page content with frontmatter (title, url, …)
+│   ├── sitemap.xml.hbs   # Output file: renders sitemap.xml from $pages
+│   └── CNAME, favicons…  # Copied to the output root unchanged
+├── data/                 # Available in every template as $data
+│   ├── google_reviews.json  # Rating + review count ($data.google_reviews)
+│   └── reviews.ts        # Parses ../reviews.tsv into $data.reviews
+├── layouts/html.hbs      # The page shell (head, top bar, nav, footer)
+├── partials/*.hbs        # Reusable chunks: {{#partial src="name"}}
+├── reviews.tsv           # Google reviews shown in the review cards
+├── scripts/              # Puppeteer scripts that refresh data/google_reviews.json
+├── bongo.config.ts       # $site metadata and $images defaults
+├── public/               # Build output (gitignored, never edit)
+└── .github/workflows/deploy.yml  # Builds and deploys public/ to GitHub Pages
 ```
 
 ## Build System
 
-### How It Works
+bongo reads `content/`, renders each page through `layouts/html.hbs`, bundles the CSS and images that the templates reference, and writes everything to `public/`. See https://bongo.build for the full docs.
 
-The build script (`build.js`) reads HTML content files from `content/` and injects them into `content/template.html`:
-
-1. **Template placeholders**:
-   - `<!-- content -->` - Replaced with page content (indented 3 tabs)
-   - `<!-- title -->` - Replaced with page title from `content/titles.js`
-
-2. **Title format**: `Duff Tree Service | Page Title` (or just `Duff Tree Service` for index)
-
-3. **Output**: Generated HTML files go to `docs/`
+- `{{{ $page.content }}}` in the layout is where the page body goes.
+- `<title>` is `Duff Tree Service | <title frontmatter>`, or just `Duff Tree Service` when a page has no `title` (the index).
+- `<bongo:style src="style.css" />` builds `assets/style.css` and links it under a content-hashed name. No manual cache-busting is needed.
+- `<bongo:asset src='file.svg' />` publishes a file from `assets/` and prints its URL.
+- `<bongo:image src="pictures/file.jpg" sizes="…" />` resizes a source image into a `srcset` of WebP files (widths and format defaults are in `bongo.config.ts`). Pass `quality`, `widths`, `fetchpriority="high"` (above-the-fold images), etc. per image.
 
 ### Commands
 
 ```sh
-npm install          # Install dependencies (first time setup)
-npm start            # Start dev server with live reload + file watching
-npm run build        # Build all content files once
-npm run jpg_to_webp  # Convert all JPG images in docs/pictures/ to WebP
+pnpm install          # Install dependencies (first time setup)
+bun --bun run dev     # Dev server with live reload at http://localhost:3000/
+bun --bun run build   # Build the site into public/
+pnpm run update_google_reviews  # Refresh data/google_reviews.json (opens Chrome, needs manual step)
 ```
+
+Image resizing uses `Bun.Image`, so run the scripts through Bun (`bun --bun run …`). Under plain Node (24+) the build still works but copies images unresized.
 
 ## Development Guidelines
 
 ### Editing Content
 
-- **ALWAYS** edit files in `content/` directory, not `docs/`
-- The build process generates files in `docs/` - manual edits there will be overwritten
-- Exception: `docs/style.css` is edited directly (not generated)
+- Edit the `.hbs` files in `content/`. Never edit `public/`.
+- Content files are tempura templates: `{{ }}` prints a value, `{{#partial src="name"}}` includes a partial from `partials/`. Plain HTML passes through unchanged.
+- Content pages should NOT include `<!DOCTYPE>`, `<html>`, `<head>`, or `<body>` tags - these come from `layouts/html.hbs`.
 
 ### Adding a New Page
 
-1. Create `content/new_page.html` with the page content
-2. Add title to `content/titles.js`: `new_page: 'Page Title'`
-3. Run `npm run build`
-4. Add navigation link in `content/template.html` if needed
-
-### Page Titles
-
-Edit `content/titles.js` to change page titles. The key is the filename without extension:
-
-```js
-export default {
-    about: 'About',
-    tree_removal: 'Tree Removal',
-    // ...
-}
-```
+1. Create `content/new_page.hbs` starting with frontmatter:
+   ```
+   ---
+   title: Page Title
+   url: /new_page.html
+   ---
+   ```
+   The `url` keeps the site's existing `name.html` URL scheme; without it bongo would publish `/new_page/`.
+2. Add navigation links in `layouts/html.hbs` if needed.
+3. The sitemap picks the page up automatically.
 
 ### Images
 
-- Store images in `docs/pictures/`
-- Prefer WebP format for web display
-- Run `npm run jpg_to_webp` to generate WebP versions from JPG files
-- In HTML, reference as `pictures/filename.webp`
+- Put full-size source images (jpg/png) in `assets/pictures/`. Do not commit resized or WebP copies; bongo generates them.
+- Reference them with `<bongo:image src="pictures/filename.jpg" alt="…" sizes="…" />`. Use `sizes="300px"` for the `.image_container` thumbnails, and `quality="50" fetchpriority="high"` for full-width hero images.
+- bongo applies EXIF orientation and never enlarges an image.
 
 ### CSS
 
-- Edit `docs/style.css` directly for global styles
-- **Page-specific CSS**: Put styles only used on one page in a `<style>` tag within that page's content file, not in style.css. Only add to style.css if used in the template or across multiple pages.
+- Edit `assets/style.css` for global styles. LightningCSS handles nesting and prefixing for the default browserslist target.
+- **Page-specific CSS**: Put styles only used on one page in a `<style>` tag within that page's content file, not in style.css. Only add to style.css if used in the layout or across multiple pages.
 - Uses CSS custom properties (variables) for theming
 - Responsive breakpoint at 750px
-- Brand colors defined in `:root` on `body`:
+- Brand colors defined in `:root`:
   - `--brand_gray: #626262`
   - `--brand_mild_gray: #888`
   - `--brand_light: #eeeae7`
   - `--brand_white: #f9f9f9`
-  - `--brand_dark_green: #2E7D32`
-- Prefer inlining single-use styles directly in the HTML using multi-line style attributes (see the telephone link and logo img in `template.html` for the formatting style)
+  - `--brand_dark_green: #2A7221`
+  - `--brand_orange: #F4992C`
+- Prefer inlining single-use styles directly in the HTML using multi-line style attributes (see the telephone link and logo img in `layouts/html.hbs` for the formatting style)
+
+### Partials and data
+
+- Partials live in `partials/*.hbs` and are called with `{{#partial src="name" arg=value}}`. Declare arguments at the top with `{{#expect arg}}`.
+- `google_reviews` renders review cards for the reviewer names listed in a page's `reviews:` frontmatter, pulling the text from `reviews.tsv` via `data/reviews.ts`.
+- `google_review_rating` shows the score and count from `data/google_reviews.json`.
+- `arbostar_form` embeds the quote form iframe.
 
 ## Key Conventions
 
 ### HTML Structure
-
-Content pages should NOT include `<!DOCTYPE>`, `<html>`, `<head>`, or `<body>` tags - these come from the template. Content is wrapped automatically.
 
 Common layout patterns used:
 - `.padded_content` - Adds horizontal padding
@@ -122,20 +127,12 @@ Common layout patterns used:
 
 ## Deployment
 
-The site is hosted on GitHub Pages:
-- The `docs/` folder is the publish source
-- Custom domain: www.dufftreeservice.com (configured in `docs/CNAME`)
-- Push to main branch to deploy
+- Pushing to `master` runs `.github/workflows/deploy.yml`: `pnpm install`, `bun --bun run build`, then `actions/deploy-pages` publishes `public/`.
+- The repository's GitHub Pages source must be set to "GitHub Actions" (Settings → Pages).
+- Custom domain: www.dufftreeservice.com (`content/CNAME` is copied into the output)
 
 ## Dependencies
 
 Dev dependencies only (no runtime dependencies):
-- `live-server` - Local development server with live reload
-- `npm-run-all` - Run multiple npm scripts in parallel
-- `sharp-cli` - Image conversion (JPG to WebP)
-- `watchlist` - File watcher for auto-rebuild
-
-### Other
-
-Whenever the style.css changes, the version in `style.css?version=` needs to be incremented for cachebusting purposes.
-
+- `bongo` (alias of `@bongo/bongo`) - the static site generator
+- `puppeteer`, `puppeteer-extra`, `puppeteer-extra-plugin-stealth` - used by `scripts/` to fetch the Google rating

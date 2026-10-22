@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const inputPath = join(__dirname, 'google-reviews-page.html')
-const componentsDir = join(__dirname, '..', 'content', 'components')
+const outputPath = join(__dirname, '..', 'data', 'google_reviews.json')
 
 const main = async () => {
 	const html = await readFile(inputPath, 'utf8')
@@ -21,9 +21,8 @@ const main = async () => {
 		console.log('Rating:', rating)
 		console.log('Review Count:', reviewCount)
 
-		await writeFile(join(componentsDir, 'google_review_score.html'), rating)
-		await writeFile(join(componentsDir, 'google_review_count.html'), reviewCount)
-		console.log('Wrote to content/components/')
+		await writeFile(outputPath, JSON.stringify({ score: rating, count: reviewCount }, null, '\t') + '\n')
+		console.log('Wrote to data/google_reviews.json')
 	} else {
 		console.error('Could not extract rating/review data')
 		console.log('Rating match:', ratingMatch)

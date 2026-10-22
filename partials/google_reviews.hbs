@@ -1,0 +1,97 @@
+{{#expect names}}
+{{#var reviews = $data.reviews.filter(review => names.includes(review.name))}}
+<style>
+	.google-reviews-row {
+		display: flex;
+		gap: 16px;
+	}
+
+	.google-review-card {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding: 16px;
+		border-radius: 8px;
+		border: 1px solid #e0e0e0;
+		background: #fff;
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.google-review-card:hover {
+		border-color: #ccc;
+	}
+
+	.google-review-card-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+	}
+
+	.google-review-card-name {
+		font-weight: 500;
+		font-size: 18px;
+		color: #333;
+	}
+
+	.google-review-card-name-and-stars {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.google-review-card-stars {
+		display: flex;
+		gap: 2px;
+	}
+
+	.google-review-card-text {
+		font-size: 14px;
+		line-height: 1.5;
+		color: #444;
+	}
+
+	@media (max-width: 750px) {
+		.google-reviews-row {
+			flex-direction: column;
+			gap: 0;
+		}
+
+		.google-review-card {
+			border-radius: 0;
+		}
+
+		.google-review-card + .google-review-card {
+			border-top: none;
+		}
+
+		.google-review-card-name-and-stars {
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			flex: 1;
+		}
+
+		.google-review-card-header > svg {
+			display: none;
+		}
+	}
+</style>
+
+<div class="google-reviews-row sans-serif">
+	{{#each reviews as review}}
+	<a class="google-review-card" href="{{ review.url }}" target="_blank">
+		<div class="google-review-card-header">
+			<div class="google-review-card-name-and-stars">
+				<span class="google-review-card-name">{{ review.name }}</span>
+				<div class="google-review-card-stars">
+					{{#partial src="google_review_stars"}}
+				</div>
+			</div>
+			{{#partial src="google_logo"}}
+		</div>
+		<div class="google-review-card-text">{{ review.text }}</div>
+	</a>
+	{{/each}}
+</div>
