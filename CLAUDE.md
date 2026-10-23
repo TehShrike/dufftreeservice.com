@@ -10,7 +10,6 @@ I prefer arrow function syntax rather than function declarations or function exp
 
 Don't define a variable right before using it only once – inline the value instead.
 
-
 ## Project Overview
 
 This is the website for **Duff Tree Service**, a tree service business based in Nebraska. It's a static site built with [bongo](https://bongo.build) (tempura templates, LightningCSS, Bun.Image), deployed to GitHub Pages at www.dufftreeservice.com by a GitHub Actions workflow.
@@ -128,11 +127,4 @@ Common layout patterns used:
 ## Deployment
 
 - Pushing to `master` runs `.github/workflows/deploy.yml`: `pnpm install`, `bun --bun run build`, then `actions/deploy-pages` publishes `public/`.
-- The repository's GitHub Pages source must be set to "GitHub Actions" (Settings → Pages).
 - Custom domain: www.dufftreeservice.com (`content/CNAME` is copied into the output)
-
-## Dependencies
-
-Dev dependencies only (no runtime dependencies):
-- `bongo` (alias of `@bongo/bongo`) - the static site generator
-- `puppeteer`, `puppeteer-extra`, `puppeteer-extra-plugin-stealth` - used by `scripts/` to fetch the Google rating
