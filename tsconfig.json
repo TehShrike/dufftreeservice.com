@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"strict": true,
+		"module": "esnext",
+		"target": "es2023",
+		"moduleResolution": "bundler",
+		"resolveJsonModule": true,
+		"noEmit": true
+	},
+	"include": [
+		"bongo.config.ts",
+		"data"
+	]
+}

@@ -1,0 +1,103 @@
+---
+title: Services
+url: /services.html
+---
+<style>
+	a[href="./services.html"] {
+		color: black;
+		text-decoration: none;
+	}
+
+	.services-list {
+		list-style: none;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 16px;
+	}
+
+	@media (max-width: 600px) {
+		.services-list {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.service-link {
+		display: block;
+		position: relative;
+		text-decoration: none;
+	}
+
+	.service-link img {
+		width: 100%;
+		display: block;
+		aspect-ratio: 333 / 142;
+		object-fit: cover;
+	}
+
+	.service-link span {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		right: 0;
+		transform: translateY(-50%);
+		color: white;
+		font-size: 20px;
+		background-color: rgba(0,0,0,0.5);
+		padding: 8px 0;
+		text-align: center;
+	}
+</style>
+
+<div class="padded_content main-content-column">
+	<h1>Services</h1>
+	<ul class="services-list">
+		<li>
+			<a class="service-link" href="./tree_trimming.html">
+				<bongo:image src="pictures/service_trimming.jpg" alt="Tree Trimming" sizes="(min-width: 600px) 360px, calc(100vw - 64px)" />
+				<span>Tree Trimming</span>
+			</a>
+		</li>
+		<li>
+			<a class="service-link" href="./tree_removal.html">
+				<bongo:image src="pictures/service_removal.jpg" alt="Tree Removal" sizes="(min-width: 600px) 360px, calc(100vw - 64px)" />
+				<span>Tree Removal</span>
+			</a>
+		</li>
+		<li>
+			<a class="service-link" href="./arborist_consultation.html">
+				<bongo:image src="pictures/service_arborist_consoltation.jpg" alt="Arborist Consultation" sizes="(min-width: 600px) 360px, calc(100vw - 64px)" />
+				<span>Arborist Consultation</span>
+			</a>
+		</li>
+		<li>
+			<a class="service-link" href="./injection.html">
+				<bongo:image src="pictures/service_injection.jpg" alt="Injection" sizes="(min-width: 600px) 360px, calc(100vw - 64px)" />
+				<span>Injection</span>
+			</a>
+		</li>
+		<li>
+			<a class="service-link" href="./cabling.html">
+				<bongo:image src="pictures/service_cabling.jpg" alt="Tree Cabling" sizes="(min-width: 600px) 360px, calc(100vw - 64px)" />
+				<span>Tree Cabling</span>
+			</a>
+		</li>
+		<li>
+			<a class="service-link" href="./tree_planting.html">
+				<bongo:image src="pictures/service_planting.jpg" alt="Tree Planting" sizes="(min-width: 600px) 360px, calc(100vw - 64px)" />
+				<span>Tree Planting</span>
+			</a>
+		</li>
+		<li>
+			<a class="service-link" href="./soil_conditioning.html">
+				<bongo:image src="pictures/soil_conditioning_1.png" alt="Soil Conditioning" sizes="(min-width: 600px) 360px, calc(100vw - 64px)" />
+				<span>Soil Conditioning</span>
+			</a>
+		</li>
+		<li>
+			<a class="service-link" href="./air_spading.html">
+				<bongo:image src="pictures/air_spading_process.png" alt="Air Spading" sizes="(min-width: 600px) 360px, calc(100vw - 64px)" />
+				<span>Air Spading</span>
+			</a>
+		</li>
+	</ul>
+</div>
