@@ -1,5 +1,3 @@
-{{#expect names}}
-{{#var reviews = $data.reviews.filter(review => names.includes(review.name))}}
 <style>
 	.google-reviews-row {
 		display: flex;
@@ -80,7 +78,7 @@
 </style>
 
 <div class="google-reviews-row sans-serif">
-	{{#each reviews as review}}
+	{{#each $data.reviews as review}}
 	<a class="google-review-card" href="{{ review.url }}" target="_blank">
 		<div class="google-review-card-header">
 			<div class="google-review-card-name-and-stars">
@@ -95,3 +93,4 @@
 	</a>
 	{{/each}}
 </div>
+<bongo:script src="pick_reviews.ts" inline format="iife"></bongo:script>
